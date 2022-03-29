@@ -2,12 +2,12 @@ import os
 
 from flask import Flask, render_template, request, redirect, send_file, url_for
 
-from s3_demo import list_files, download_file, upload_file
+from s3_demo import list_files, download_file, upload_file, show_image
 
 
 app = Flask(__name__)
 UPLOAD_FOLDER = "uploads"
-BUCKET = "insert_bucket_name_here"
+BUCKET = "techusprint01"
 
 
 @app.route('/')
@@ -37,6 +37,11 @@ def download(filename):
         output = download_file(filename, BUCKET)
 
         return send_file(output, as_attachment=True)
+
+@app.route("/pics")
+def list():
+    contents = show_image(BUCKET)
+    return render_template('collection.html', contents=contents)
 
 
 if __name__ == '__main__':
