@@ -1,6 +1,5 @@
 import boto3
 
-
 def upload_file(file_name, bucket):
     """
     Function to upload a file to an S3 bucket
@@ -10,7 +9,6 @@ def upload_file(file_name, bucket):
     response = s3_client.upload_file(file_name, bucket, object_name)
 
     return response
-
 
 def download_file(file_name, bucket):
     """
@@ -30,7 +28,7 @@ def list_files(bucket):
     s3 = boto3.client('s3')
     contents = []
     try:
-        for item in s3.list_objects(Bucket=bucket)['Contents']:
+        for item in s3_client.list_objects(Bucket=bucket)['Contents']:
             print(item)
             contents.append(item)
     except Exception as e:
@@ -43,6 +41,7 @@ def show_image(bucket):
     s3_client = boto3.client('s3')
     # location = boto3.client('s3').get_bucket_location(Bucket=bucket)['LocationConstraint']
     public_urls = []
+    videos_list = []
     try:
         for item in s3_client.list_objects(Bucket=bucket)['Contents']:
             presigned_url = s3_client.generate_presigned_url('get_object', Params = {'Bucket': bucket, 'Key': item['Key']}, ExpiresIn = 100)
