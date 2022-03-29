@@ -1,4 +1,3 @@
-[![HitCount](http://hits.dwyl.io/ro6ley/flask-drive.svg)](http://hits.dwyl.io/ro6ley/flask-drive)
 
 # FlaskDrive 
 
