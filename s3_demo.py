@@ -7,7 +7,7 @@ sts_client = boto3.client('sts')
 # Call the assume_role method of the STSConnection object and pass the role
 # ARN and a role session name.
 assumed_role_object=sts_client.assume_role(
-    RoleArn="arn:aws:iam::982853265726:role/flaskwebrole",
+    RoleArn="arn:aws:iam::982853265726:instance-profile/flaskwebrole",
     RoleSessionName="assumerolesession"
 )
 
