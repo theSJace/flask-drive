@@ -1,5 +1,36 @@
 import boto3
 
+# create an STS client object that represents a live connection to the 
+# STS service
+sts_client = boto3.client('sts')
+
+# Call the assume_role method of the STSConnection object and pass the role
+# ARN and a role session name.
+assumed_role_object=sts_client.assume_role(
+    RoleArn="arn:aws:iam::982853265726:role/flaskwebrole",
+    RoleSessionName="assumerolesession"
+)
+
+# From the response that contains the assumed role, get the temporary 
+# credentials that can be used to make subsequent API calls
+credentials=assumed_role_object['Credentials']
+
+
+# Use the temporary credentials that AssumeRole returns to make a 
+# connection to Amazon S3  
+s3_client = boto3.client('s3', 
+                      aws_access_key_id=credentials['AccessKeyId'],
+                      aws_secret_access_key=credentials['SecretAccessKey'],
+                      region_name="ap-southeast-1"
+                      )
+
+s3 = boto3.resource(
+    service_name='s3',
+    region_name='ap-southeast-1',
+    aws_access_key_id=credentials['AccessKeyId'],
+    aws_secret_access_key=credentials['SecretAccessKey']
+)
+
 def upload_file(file_name, bucket):
     """
     Function to upload a file to an S3 bucket
