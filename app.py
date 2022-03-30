@@ -9,7 +9,6 @@ app = Flask(__name__)
 UPLOAD_FOLDER = "uploads"
 BUCKET = "blowfish-s3-photos"
 
-
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -52,4 +51,4 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=4000, debug=True)
+    app.run(host='0.0.0.0', debug=True)
