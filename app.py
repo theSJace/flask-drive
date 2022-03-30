@@ -7,12 +7,12 @@ from s3_demo import list_files, download_file, upload_file, show_image
 
 app = Flask(__name__)
 UPLOAD_FOLDER = "uploads"
-BUCKET = "techusprint01"
+BUCKET = "blowfish-s3-photos"
 
 
 @app.route('/')
-def entry_point():
-    return 'Hello World!'
+def index():
+    return render_template('index.html')
 
 
 @app.route("/storage")
@@ -43,6 +43,13 @@ def list():
     contents = show_image(BUCKET)
     return render_template('collection.html', contents=contents)
 
+@app.route('/info')
+def infolist():
+    return render_template('infolist.html')
+
+@app.errorhandler(404) 
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0', port=4000, debug=True)

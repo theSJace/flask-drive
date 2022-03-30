@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-3">Welcome to Blowfish and Co!</h1>
+        <p class="lead"></p>
+        <hr class="my-2">
+        <img src="{{ url_for('static', filename = 'aws.png') }}" class="img-fluid"/>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{{url_for('list')}}" role="button">View Photos</a>
+        </p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{{url_for('infolist')}}" role="button">View Info</a>
+        </p>
+    </div>
+{% endblock %}
