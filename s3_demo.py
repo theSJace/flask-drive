@@ -50,7 +50,7 @@ def show_image(bucket):
     videos_list = []
     try:
         for item in s3_client.list_objects(Bucket=bucket)['Contents']:
-            presigned_url = s3_client.generate_presigned_url('get_object', Params = {'Bucket': bucket, 'Key': item['Key']}, ExpiresIn = 100)
+            presigned_url = s3_client.generate_presigned_url('get_object', Params = {'Bucket': bucket, 'Key': item['Key']}, ExpiresIn = 172800)
             #images = presigned_url.split('?')[0]
             print("[DATA] : presigned url = ", presigned_url)
             #print(images)
