@@ -2,15 +2,16 @@
 
 {% block content %}
     <div class="jumbotron">
-        <h1 class="display-3">Greetings Blowfish and Co! This is a sample flask app!</h1>
+        <h1 class="display-3">Greetings Blowfish and Co!</h1>
+        <h4 class="display-4"> This is a sample flask app!</h4>
         <p class="lead"></p>
         <hr class="my-2">
-        <img src="{{ url_for('static', filename = 'aws.png') }}" class="img-fluid"/>
+        <img src="/static/aws.png" class="img-fluid" style="width: 40%;">
         <p class="lead">
-            <a class="btn btn-primary btn-lg" href="{{url_for('list')}}" role="button">View Photos</a>
+            <a class="btn btn-primary btn-lg" href="/pics" role="button">View Photos</a>
         </p>
         <p class="lead">
-            <a class="btn btn-primary btn-lg" href="{{url_for('infolist')}}" role="button">View Info</a>
+            <a class="btn btn-primary btn-lg" href="/info" role="button">View Info</a>
         </p>
     </div>
 {% endblock %}
